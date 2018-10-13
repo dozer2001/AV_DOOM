@@ -1,11 +1,13 @@
 'use strict';
 
  let menu = document.querySelector('.menu'),
-     elements = document.getElementsByClassName('menu-item'),
+     elements = document.getElementsByClassName('menu-item')[0],
      newLi = document.createElement('li'),
      title = document.getElementById('title'),
      adv = document.querySelector('.adv'),
-     promt = document.getElementById('prompt');
+     promt = document.getElementById('prompt'),
+     body = document.querySelector('body');
+body.style.backgroundImage = 'url(img/apple_true.jpg)';
 adv.remove();
 console.log(promt);
 title.innerText = 'Мы продаем только подлинную технику Apple';
@@ -17,7 +19,7 @@ elements[4].innerText = 'Пятый пункт';
 
 window.onload=function(){
     let ask = prompt('Какое у вас отношение к технике Aplle?');
-    console.log(ask);
+
     promt.innerText = ask ;
-    console.log(promt.innerText);
+
 };
