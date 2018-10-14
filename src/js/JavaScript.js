@@ -44,10 +44,11 @@ expensesBtn.addEventListener('click', function () {
             howMuchOne = expensesItem[++i].value;
 
         if (( typeof (mandatoryItemOne)) === 'string' && ( typeof (mandatoryItemOne)) != null && ( typeof (howMuchOne)) != null
-            && mandatoryItemOne != '' && howMuchOne != '' && mandatoryItemOne.length < 50) {
+            && mandatoryItemOne != '' && howMuchOne != '' && mandatoryItemOne.length < 50 && mandatoryItemOne != '^[а-яА-ЯёЁa-zA-Z0-9]+$' && howMuchOne == /^\d+$/ ) {
             appData.expenses[mandatoryItemOne] = howMuchOne;
             sum += +howMuchOne;
-        } else {
+        }
+        else {
             alert('Вы что-то забыли указать');
             i--
         }
@@ -69,8 +70,9 @@ countBtn.addEventListener('click', function () {
     if (appData.budget != undefined) {
 
         appData.moneyPerDay = (appData.budget / 30).toFixed();
-        dayBudgetValue.textContent = appData.moneyPerDay;
-
+        dayBudgetValue.textContent = appData.moneyPerDay - (expensesValue.textContent /30);
+        console.log(appData.moneyPerDay);
+        console.log(expensesValue.textContent);
         if (appData.moneyPerDay < 100) {
             levelValue.textContent = 'Минимальынй уровень достатка';
         } else if (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000) {
@@ -163,19 +165,14 @@ expensesItem[3].addEventListener('change', function () {
 function chekInputs() {
     for(let i = 0; i < expensesItem.length; i++ ){
         if(!expensesItem[i].value){
-            console.log(expensesItem.length);
-
             return
         }
     }
-
     expensesBtn.disabled = false;
     countBtn.disabled = false;
-    console.log(expensesBtn.disabled);
 }
 
 function enableBtn() {
-
     expensesBtn.disabled = false;
     optionalExpensesBtn.disabled = false;
     countBtn.disabled = false;
