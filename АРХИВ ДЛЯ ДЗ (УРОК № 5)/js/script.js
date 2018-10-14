@@ -1,7 +1,7 @@
 'use strict';
 
  let menu = document.querySelector('.menu'),
-     elements = document.getElementsByClassName('menu-item')[0],
+     elements = document.getElementsByClassName('menu-item'),
      newLi = document.createElement('li'),
      title = document.getElementById('title'),
      adv = document.querySelector('.adv'),

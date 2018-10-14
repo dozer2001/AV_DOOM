@@ -29,11 +29,8 @@ function resDay() {
     let date1 = document.getElementById("date1").value;
     let date2 = document.getElementById("date2").value;
     let newDate1= [] ;
-    newDate1 = date1.split("-");
-    console.log(newDate1);
-    let a = new Date(newDate1[0],newDate1[1],newDate1[2]);
-    console.log(a);
-    // let daysLag = Math.ceil(Math.abs(date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
-    // console.log(daysLag)
+    let p = new Date(date1);
+    let o = new Date(date2);
+    console.log("Разница в : " +(p-o)/1000/3600/24);
 }
 
