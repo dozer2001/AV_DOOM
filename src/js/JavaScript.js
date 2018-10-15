@@ -35,7 +35,7 @@ startBtn.addEventListener('click', function () {
     yearValue.value = new Date(Date.parse(time)).getFullYear();
     monthValue.value = new Date(Date.parse(time)).getMonth() + 1;
     dayValue.value = new Date(Date.parse(time)).getDate();
-    enableBtn()
+    enableBtn();
 });
 expensesBtn.addEventListener('click', function () {
     let sum = 0;
@@ -107,8 +107,6 @@ incomeItem.addEventListener('input', function () {
             i--;
         }
         else {
-            console.log(Number.isNaN(parseInt(items, 10)));
-            console.log("good");
             appData.income = items.split(',');
             appData.income.sort();
         }
@@ -159,6 +157,21 @@ let appData = {
 expensesBtn.disabled = true;
 optionalExpensesBtn.disabled = true;
 countBtn.disabled = true;
+
+
+let data = document.querySelector('.data');
+
+// data.onclick = function (event) {
+//     let target = event.target;
+//     if(target.className == "expenses-item"){
+//         chekInputs();
+//         console.log(1);
+//     }else if(target.className == "optionalexpenses-item"){
+//         chekInputs2();
+//         console.log(2);
+//     }
+// };
+
 expensesItem[0].addEventListener('change', function () {
     chekInputs();
 });
@@ -188,20 +201,22 @@ function chekInputs() {
             return;
         }
     }
-    optionalExpensesBtn.disabled = false;
+
     expensesBtn.disabled = false;
+    optionalExpensesBtn.disabled = false;
     countBtn.disabled = false;
+
 }
 function chekInputs2() {
     for(let i = 0; i < optionalExpensesItem.length; i++ ){
-        console.log(optionalExpensesItem);
         if(!optionalExpensesItem[i].value){
             return;
         }
     }
-    optionalExpensesBtn.disabled = false;
     expensesBtn.disabled = false;
+    optionalExpensesBtn.disabled = false;
     countBtn.disabled = false;
+
 }
 
 function enableBtn() {
