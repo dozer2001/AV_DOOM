@@ -44,13 +44,15 @@ expensesBtn.addEventListener('click', function () {
             howMuchOne = expensesItem[++i].value;
 
         if (( typeof (mandatoryItemOne)) === 'string' && ( typeof (mandatoryItemOne)) != null && ( typeof (howMuchOne)) != null
-            && mandatoryItemOne != '' && howMuchOne != '' && mandatoryItemOne.length < 50 && mandatoryItemOne != '^[а-яА-ЯёЁa-zA-Z0-9]+$' && howMuchOne == /^\d+$/ ) {
+            && mandatoryItemOne != '' && howMuchOne != '' && mandatoryItemOne.length < 50 && (/\d/.test(howMuchOne))){
             appData.expenses[mandatoryItemOne] = howMuchOne;
             sum += +howMuchOne;
         }
         else {
-            alert('Вы что-то забыли указать');
-            i--
+            alert('Вы что-то забыли указать или правильно заполните поля');
+           return;
+            console.log(mandatoryItemOne);
+            console.log(howMuchOne);
         }
     }
     expensesValue.textContent = sum;
@@ -58,10 +60,17 @@ expensesBtn.addEventListener('click', function () {
 
 optionalExpensesBtn.addEventListener('click', function () {
     let nonBindingExpenses;
+    let  pattern = /^[а-яА-Яa]+$/;
+    optionalExpensesValue.textContent = "";
     for (let i = 0; i < optionalExpensesItem.length; i++) {
-        nonBindingExpenses = optionalExpensesItem[i].value;
-        appData.optionalExpenses[i] = nonBindingExpenses;
-        optionalExpensesValue.textContent += appData.optionalExpenses[i] + ' ';
+         if(pattern.test(optionalExpensesItem[0].value)){
+            nonBindingExpenses = optionalExpensesItem[i].value;
+            appData.optionalExpenses[i] = nonBindingExpenses;
+            optionalExpensesValue.textContent += appData.optionalExpenses[i] + ' ';
+        }else{
+            alert('Введите русские буквыы');
+            return;
+        }
     }
 });
 
@@ -95,7 +104,7 @@ incomeItem.addEventListener('input', function () {
             i--;
         } else if (/\d/.test(items)) {
             alert('Нужно вести текст');
-            i--
+            i--;
         }
         else {
             console.log(Number.isNaN(parseInt(items, 10)));
@@ -151,23 +160,46 @@ expensesBtn.disabled = true;
 optionalExpensesBtn.disabled = true;
 countBtn.disabled = true;
 expensesItem[0].addEventListener('change', function () {
-    chekInputs()
+    chekInputs();
 });
+
 expensesItem[1].addEventListener('change', function () {
-    chekInputs()
+    chekInputs();
 });
 expensesItem[2].addEventListener('change', function () {
-    chekInputs()
+    chekInputs();
 });
 expensesItem[3].addEventListener('change', function () {
-    chekInputs()
+    chekInputs();
+});
+
+optionalExpensesItem[0].addEventListener('change', function () {
+    chekInputs2();
+});
+optionalExpensesItem[1].addEventListener('change', function () {
+    chekInputs2();
+});
+optionalExpensesItem[2].addEventListener('change', function () {
+    chekInputs2();
 });
 function chekInputs() {
     for(let i = 0; i < expensesItem.length; i++ ){
         if(!expensesItem[i].value){
-            return
+            return;
         }
     }
+    optionalExpensesBtn.disabled = false;
+    expensesBtn.disabled = false;
+    countBtn.disabled = false;
+}
+function chekInputs2() {
+    for(let i = 0; i < optionalExpensesItem.length; i++ ){
+        console.log(optionalExpensesItem);
+        if(!optionalExpensesItem[i].value){
+            return;
+        }
+    }
+    optionalExpensesBtn.disabled = false;
     expensesBtn.disabled = false;
     countBtn.disabled = false;
 }
@@ -177,6 +209,7 @@ function enableBtn() {
     optionalExpensesBtn.disabled = false;
     countBtn.disabled = false;
 }
+
 
 
 
