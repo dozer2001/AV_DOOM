@@ -26,11 +26,13 @@ alert(arr[date.getDay()]);
 
 
 function resDay() {
-    let date1 = document.getElementById("date1").value;
-    let date2 = document.getElementById("date2").value;
-    let newDate1= [] ;
-    let p = new Date(date1);
-    let o = new Date(date2);
-    console.log("Разница в : " +(p-o)/1000/3600/24);
+    let date1 = document.getElementById("date1").value,
+        date2 = document.getElementById("date2").value,
+        data3 = document.getElementById("data3"),
+        newDate1 = [],
+        p = new Date(date1),
+        o = new Date(date2);
+    data3.value = "Разница в : " +(p-o)/1000/3600/24 + " день";
+    console.log();
 }
 
