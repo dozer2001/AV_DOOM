@@ -201,11 +201,7 @@ function chekInputs() {
             return;
         }
     }
-
     expensesBtn.disabled = false;
-    optionalExpensesBtn.disabled = false;
-    countBtn.disabled = false;
-
 }
 function chekInputs2() {
     for(let i = 0; i < optionalExpensesItem.length; i++ ){
@@ -214,9 +210,6 @@ function chekInputs2() {
         }
     }
     expensesBtn.disabled = false;
-    optionalExpensesBtn.disabled = false;
-    countBtn.disabled = false;
-
 }
 
 function enableBtn() {
