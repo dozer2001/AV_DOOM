@@ -23,6 +23,7 @@ let startBtn = document.getElementById('start'),
     dayValue = document.querySelector(".day-value");
 let money, time;
 
+
 startBtn.addEventListener('click', function () {
     time = prompt('Введите дату в формате YYYY-MM-DD', '');
     money = +prompt('Ваш бюджет на месяц?', '');
@@ -51,8 +52,6 @@ expensesBtn.addEventListener('click', function () {
         else {
             alert('Вы что-то забыли указать или правильно заполните поля');
            return;
-            console.log(mandatoryItemOne);
-            console.log(howMuchOne);
         }
     }
     expensesValue.textContent = sum;
@@ -217,6 +216,12 @@ function enableBtn() {
     optionalExpensesBtn.disabled = false;
     countBtn.disabled = false;
 }
+let body = document.getElementsByClassName('app')[0],
+    title = document.getElementsByClassName('title')[0];
+console.log(title);
+body.style.backgroundColor = "#b59c77";
+body.style.color = "red";
+title.style.fontSize = '27px';
 
 
 
